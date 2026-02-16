@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="uk"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAMPSWORLD | Кращий Minecraft Сервер</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link href="css/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #00d4ff;
+            --primary-glow: rgba(0, 212, 255, 0.5);
+            --bg-dark: #0a0a0c;
+            --card-bg: #16161a;
+            --text-main: #ffffff;
+            --text-dim: #b0b0b0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(10, 10, 12, 0.85), rgba(10, 10, 12, 0.95)), 
+                        url('https://images.unsplash.com/photo-1627389955609-70231fca046d?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center; z-index: -1;
+        }
+
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 10%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10, 10, 12, 0.8); backdrop-filter: blur(10px);
+            z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Стиль для кольорових літер */
+        .colored-name { font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+
+        .logo { font-size: 1.5rem; text-shadow: 0 0 10px var(--primary-glow); }
+
+        .nav-links { display: flex; list-style: none; gap: 25px; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--primary); text-shadow: 0 0 8px var(--primary-glow); }
+
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+        .hero h1 { font-size: clamp(1.8rem, 5vw, 4rem); margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; color: var(--primary); margin-bottom: 30px; font-weight: bold; }
+
+        .ip-box {
+            background: rgba(255, 255, 255, 0.05); padding: 15px 25px; border-radius: 12px;
+            border: 1px solid var(--primary); display: flex; align-items: center; gap: 15px;
+            cursor: pointer; transition: 0.3s; margin-bottom: 30px;
+        }
+        .ip-box:hover { background: rgba(0, 212, 255, 0.1); transform: translateY(-3px); box-shadow: 0 5px 15px var(--primary-glow); }
+
+        .btn-main { padding: 15px 40px; background: var(--primary); color: #000; text-decoration: none; font-weight: 900; border-radius: 8px; text-transform: uppercase; transition: 0.3s; }
+        .btn-main:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--primary); }
+
+        section { padding: 80px 10%; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; text-transform: uppercase; }
+        .section-title span { color: var(--primary); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.3s; }
+        .card:hover { border-color: var(--primary); transform: translateY(-10px); }
+        .card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+
+        .join-step { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .step-num { background: var(--primary); color: #000; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; flex-shrink: 0; }
+
+        .rules-container { max-width: 800px; margin: 0 auto; }
+        details { background: var(--card-bg); margin-bottom: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); cursor: pointer; }
+        summary { padding: 20px; font-weight: 700; text-transform: uppercase; color: var(--primary); list-style: none; display: flex; justify-content: space-between; }
+        summary::after { content: '▼'; font-size: 0.8rem; }
+        .rule-content { padding: 0 20px 20px; color: var(--text-dim); font-size: 0.95rem; }
+        .rule-content li { margin-bottom: 8px; list-style: none; border-left: 2px solid var(--primary); padding-left: 15px; }
+
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 600px; margin: 0 auto; }
+        .social-btn { display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; color: white; transition: 0.3s; }
+        .social-btn:hover i { transform: scale(1.2); color: var(--primary); }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-dim); }
+
+        @media (max-width: 768px) { .nav-links { display: none; } .social-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="bg-overlay"></div>
+
+    <nav>
+        <div class="logo colored-name">
+            <span style="color: #5FE2C5;">L</span><span style="color: #55D3D4;">A</span><span style="color: #4CC5E2;">M</span><span style="color: #42B6F1;">P</span><span style="color: #38A7FF;">S</span><span style="color: #639FEE;">W</span><span style="color: #8D98DC;">O</span><span style="color: #B890CB;">R</span><span style="color: #E288B9;">L</span><span style="color: #E288B9;">D</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Головна</a></li>
+            <li><a href="#join">Як зайти</a></li>
+            <li><a href="#rules">Правила</a></li>
+            <li><a href="#contacts">Контакти</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1 data-aos="zoom-in" class="colored-name">
+            <span style="color: #5FE2C5;">L</span><span style="color: #55D3D4;">A</span><span style="color: #4CC5E2;">M</span><span style="color: #42B6F1;">P</span><span style="color: #38A7FF;">S</span><span style="color: #639FEE;">W</span><span style="color: #8D98DC;">O</span><span style="color: #B890CB;">R</span><span style="color: #E288B9;">L</span><span style="color: #E288B9;">D</span>
+        </h1>
+        <p data-aos="fade-up" data-aos-delay="200">КРАЩИЙ MINECRAFT СЕРВЕР ДЛЯ ВИЖИВАННЯ</p>
+        
+        <div class="ip-box" onclick="copyIP()" data-aos="fade-up" data-aos-delay="400">
+            <span id="serverIP">LAMPSWORLD.aternos.me</span>
+            <i class="far fa-copy"></i>
+        </div>
+
+        <a href="#join" class="btn-main" data-aos="fade-up" data-aos-delay="600">Підключитися</a>
+    </section>
+
+    <section id="join">
+        <h2 class="section-title" data-aos="fade-up">Як <span>зайти</span></h2>
+        <div class="grid">
+            <div class="card" data-aos="fade-right">
+                <i class="fas fa-desktop"></i>
+                <h3 style="margin-bottom: 20px;">Java Edition (ПК)</h3>
+                <div class="join-step"><div class="step-num">1</div><p>Версія: <b>1.21.10</b></p></div>
+                <div class="join-step"><div class="step-num">2</div><p>IP: <b>LAMPSWORLD.aternos.me</b></p></div>
+                <div class="join-step"><div class="step-num">3</div><p>Натисніть "Готово" та грайте!</p></div>
+            </div>
+
+            <div class="card" data-aos="fade-left">
+                <i class="fas fa-mobile-alt"></i>
+                <h3 style="margin-bottom: 20px;">Bedrock Edition (Мобільні)</h3>
+                <div class="join-step"><div class="step-num">1</div><p>Версія: <b>1.21.130</b></p></div>
+                <div class="join-step"><div class="step-num">2</div><p>IP: <b>LAMPSWORLD.aternos.me</b></p></div>
+                <div class="join-step"><div class="step-num">3</div><p>Порт: <b style="color: var(--primary);">58990</b></p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rules">
+        <h2 class="section-title" data-aos="fade-up">Правила <span>Сервера</span></h2>
+        <div class="rules-container">
+            <details data-aos="fade-up">
+                <summary>1. Загальні положення</summary>
+                <div class="rule-content">
+                    <li>1.1. Незнання правил не звільняє від відповідальності.</li>
+                    <li>1.2. Адміністрація має право редагувати правила без попередження.</li>
+                    <li>1.3. Заборонено продаж акаунтів або ігрових цінностей за реальні гроші.</li>
+                </div>
+            </details>
+            <details data-aos="fade-up">
+                <summary>2. Ігровий процес</summary>
+                <div class="rule-content">
+                    <li>2.1. Заборонено використання читів (X-Ray, Fly, KillAura тощо).</li>
+                    <li>2.2. Заборонено гриферство та навмисне псування чужих будівель.</li>
+                    <li>2.3. Заборонено створення механізмів, що лагають сервер.</li>
+                </div>
+            </details>
+            <details data-aos="fade-up">
+                <summary>3. Спілкування в чаті</summary>
+                <div class="rule-content">
+                    <li>3.1. Заборонено спам, флуд та надмірне використання Caps Lock.</li>
+                    <li>3.2. Заборонені образи гравців та нецензурна лексика.</li>
+                    <li>3.3. Категорично заборонена реклама інших проектів.</li>
+                </div>
+            </details>
+            <details data-aos="fade-up">
+                <summary>4. Адміністрація та Модерація</summary>
+                <div class="rule-content">
+                    <li>4.1. Заборонено обманювати або вводити в оману адміністрацію.</li>
+                    <li>4.2. Модератор завжди має останнє слово у суперечках.</li>
+                    <li>4.3. Оскаржити бан можна в нашому Discord сервері.</li>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <h2 class="section-title" data-aos="fade-up">Наші <span>Контакти</span></h2>
+        <div class="social-grid">
+            <a href="https://t.me/lampswworld" target="_blank" class="card social-btn" data-aos="flip-left">
+                <i class="fab fa-telegram-plane"></i>
+                <span>Telegram Канал</span>
+            </a>
+            <a href="https://discord.gg/xKeND9jGSM" target="_blank" class="card social-btn" data-aos="flip-right">
+                <i class="fab fa-discord"></i>
+                <span>Discord Сервер</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>� 2026 LAMPSWORLD. Створено з любов'ю до Minecraft.</p>
+    </footer>
+
+    <script src="js/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        function copyIP() {
+            const ip = document.getElementById('serverIP').innerText;
+            navigator.clipboard.writeText(ip).then(() => {
+                alert('IP сервера скопійовано!');
+            });
+        }
+    </script>
+
+
+</body></html>
